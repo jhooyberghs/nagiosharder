@@ -259,6 +259,10 @@ class NagiosHarder
         end
       end
 
+      if options[:hostgroup]
+        params['hostgroup'] = options[:hostgroup]
+      end
+
       query = params.select {|k,v| v }.map {|k,v| "#{k}=#{v}" }.join('&')
       url = "#{status_url}?#{query}"
       response = get(url)
